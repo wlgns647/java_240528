@@ -33,6 +33,7 @@ public class ScannerEx01 {
 		char ch = scan.next().charAt(0);
 		System.out.println(ch);
 		
+	
 	}
 
 }

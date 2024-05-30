@@ -9,12 +9,13 @@ public class ScannerEx3 {
 
 		Scanner scan = new Scanner(System.in);
 
-		System.out.println("정수 입력: ");
+		System.out.println("정수: ");
 		int num = scan.nextInt() ;
 		System.out.println(num);
 
-		
-		
+		System.out.println("실수:");
+		double num1 = scan.nextInt();
+		System.out.println(num1);
 		
 		
 		
