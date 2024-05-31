@@ -25,6 +25,8 @@ public class SwichEx01 {
 			break;
 		default:
 			System.out.println(num + " 는 홀수");
+			
+			
 		}
 	}
 
