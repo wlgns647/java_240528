@@ -17,7 +17,7 @@ public class upDownGame {
 		int count = 0;
 		int min = 1, max = 100; // 변수 선언
 		int random = (int) (Math.random() * (max - min + 1) + min); // 랜덤 만듬
-		System.out.println("랜덤한 수를 맞춰보세요" ); // 랜덤 출력 + random
+		System.out.println("랜덤한 수를 맞춰보세요"); // 랜덤 출력 + random
 
 		System.out.println("숫자를 입력하세요"); // 입력요청
 		Scanner scan = new Scanner(System.in); // 스켄
@@ -31,18 +31,18 @@ public class upDownGame {
 			if (num < random) {
 				System.out.println("값이 작습니다");
 				num = scan.nextInt();
-				count+=1;
+				count += 1;
 				continue;
 			} else if (num > random) {
 				System.out.println("값이 큽니다");
 				num = scan.nextInt();
-				count+=1;
+				count += 1;
 				continue;
 			} else
 				break;
 
 		}
 		System.out.println("정답입니다");
-		System.out.println("총"+ count + " 번 시도했습니다 ");
+		System.out.println("총" + count + " 번 시도했습니다 ");
 	}
 }
