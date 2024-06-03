@@ -17,7 +17,9 @@ public class ArrayEx03 {
 			arr[i] = random;
 			System.out.println("랜덤 수: " + arr[i]);
 		}
-
+				
+				
+				
 	}
 
 }
