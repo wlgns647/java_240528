@@ -27,7 +27,7 @@ public class upDownGame {
 //		 만약 num 이 랜덤보다 작다면 크다면  그것도 아니라면 
 
 		while (num != random) {
-
+			
 			if (num < random) {
 				System.out.println("값이 작습니다");
 				num = scan.nextInt();
