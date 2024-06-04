@@ -1,3 +1,4 @@
+package day06;
 import java.util.Scanner;
 
 import javax.swing.plaf.synth.SynthOptionPaneUI;
