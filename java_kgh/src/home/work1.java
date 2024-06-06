@@ -1,5 +1,7 @@
 package home;
 
+import java.util.Arrays;
+
 public class work1 {
 
 	public static void main(String[] args) {
@@ -25,7 +27,10 @@ public class work1 {
 		 * score >= 80 && score < 90;
 		 * 
 		 */
+		int[] arr = {1, 26, 17, 25, 99, 44, 303};
 
+		Arrays.sort(arr); 
+		 System.out.println(Arrays.toString(arr));
 	}
 
 }
