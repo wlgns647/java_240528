@@ -7,7 +7,10 @@ public class ArratEx02 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-	/* 
+		
+	/*
+	 
+
  *  1에서 9사이의 랜덤한 수 3개를 배열에  중복되지 않게 저장
  *  반복횟수	저장된 숫자가 3개가 아닐때 반복
  *  		 저장된 숫자가 3개보다 작을때 
@@ -30,18 +33,27 @@ public class ArratEx02 {
 		int min = 1, max = 9;
 		//랜덤값의 최소,최대치 선언
 		
-		int random = (int) (Math.random() *(max - min + 1) + min);
 		// int random은 저장된 숫자가 3개가 아니면 반복선언 
-		int [] num = new int[3];
+		int [] list = new int[3];
 		// 3의 크기를 갖는 배열 num을 선언
-		int num0 = random;
-		for(int i = 0; i < num.length; i++) {// 배열 num 에서
-			num[i] = random;
+		int count =0;
+		//저장된 숫자의 갯수
+		while (count<3) {
+			int random = (int) (Math.random() *(max - min + 1) + min);
+			
+			for(int i = 0; i < count; i++) {
+				if(list[i]==random) {
+					break;// 브레이크 만나면 i는 count 보다 작을수밖에 없음 
+					
 		}
-		System.out.println(Arrays.toString(num);
-		
-		
-		
+		}
+			if(i ==count) {
+				list[count]=random;
+				count++;
+			}
+		System.out.println(random);
+	}		
+		System.out.println(Array.toString(list));
 	
 		
 		
