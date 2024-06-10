@@ -45,4 +45,7 @@ class Student1{
 //	 
 	String name,num,address,major;
 	int semester;
+
+
+
 }
