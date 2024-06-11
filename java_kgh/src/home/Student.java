@@ -1,33 +1,23 @@
 package home;
 
-public class Student {   //  student 클레스 
-	int studentID;
-	String studentName; 
-	int grade;
-	String address;
-	
-	public String getStudentName( ) {
-		return studentName;
-		}
-	
+ublic class Start {
+	public static void printTwotimeA() {
 
-	public static void main(String[] args) {  //메인 함수 선언 
-		Student studentKgh =new Student(); //student클래스 생성 
-		studentKgh.studentName = "강지훈";
-		
-		System.out.println(studentKgh.studentName);
-		System.out.println(studentKgh.getStudentName());
+		System.out.println("안녕하세요");
+		System.out.println("=");
+		System.out.println("=");
 	}
-
-
-
+	public static void main(String[] args) {
 		
-		
-		
-		
-		
-		
-		
-		
+		printTwotimeA();
 	}
 }
+
+		
+		
+		
+
+		
+		
+		
+		
