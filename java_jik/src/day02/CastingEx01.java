@@ -22,7 +22,6 @@ public class CastingEx01 {
 		double res = 1/2;//1/2의 결과인 0이 자동자료형변환을 통해 0.0으로 변환
 		System.out.println(res);
 		
-		
 		res = 1 / (double)2;//2를 명시적 자료형변환으로 변환하여 1/2.0을 계산해서 0.5를 저장
 		System.out.println(res);
 		
