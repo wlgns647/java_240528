@@ -3,9 +3,11 @@ package day10;
 import java.util.Arrays;
 import java.util.Scanner;
 
+
 public class VocabularyEx01 {
 
 	private static Scanner scan = new Scanner(System.in);
+	private static String word;
 	
 	public static void main(String[] args) {
 		/* 메뉴
@@ -42,9 +44,6 @@ public class VocabularyEx01 {
 				if(wordCount == list.length) {
 					list = expandWordList(list, list.length + 10);
 				}
-				for(int i = 0; i<wordCount; i++) {
-					list[i].print();
-				}
 				
 				break;
 			case 2:	
@@ -52,9 +51,40 @@ public class VocabularyEx01 {
 				//누구를 수정할지를 선택하는 부분을 고민해야 함.
 				updateWord(list, wordCount);
 				break;
-			case 3:	System.out.println("단어 검색 기능 구현 중입니다.");
+			case 3:	
+				surchWord(list,  wordCount);
 				break;
 			case 4:	System.out.println("단어 삭제 기능 구현 중입니다.");
+			//    deleteWord(list, wordCount);
+				// 단어를 입력받아 단어 리스트에 해당 단어가 있는지 출력하는 메소드 
+//				@param list 단어 리스트
+//				@param wordCount 저장된 단어 개수 
+//				삭제할 단어 입력후 삭제할 단어를 출력
+//				삭제할 단어를 선택 
+//				올바른 선택이면 삭제
+//				아니면 잘못선택했다고 알림 
+//				삭제하려는 번지 다음에 있는 단어들부터 앞으로 한칸씩 당기고 마지막 단어를 null로 만듬
+// 				저장된 단어 수를 1 감소 				
+			int num = scan.nextInt();
+				if (!checkWord(list, word, num-1)) {
+					System.out.println("잘못된 번호를 선택했습니다");	
+					break;
+				} break;
+				
+				Word[] tmp = new Word [list.length];
+			
+				System.arraycopy(list, 0, tmp, 0, wordCount);
+				if (wordCount - num !=0) {
+					System.arraycopy(tmp,  num , list, num-1, wordCount - num);
+				}
+					wordCount --;
+					list[wordCount]=null;
+					System.out.println("삭제되었습니다 ");
+					for(int i = 0; i<wordCount; i++) {
+						list[i].print();
+					}
+					
+				
 				break;
 			case 5:	System.out.println("프로그램을 종료합니다.");
 				break;
@@ -63,7 +93,7 @@ public class VocabularyEx01 {
 			}
 		}while(menu != 5);
 	}
-	
+
 	/**기능 : list에 index 번지에 있는 단어가 word인지 아닌지 알려주는 메소드
 	 * @param list 단어 리스트
 	 * @param word 검색할 단어
@@ -185,6 +215,66 @@ public class VocabularyEx01 {
 		System.out.println("단어 수정을 완료했습니다.");
 		System.out.println("------------------");
 	}
+
+	public static void surchWord(Word[] list, int wordCount) {
+		//검색할 단어를 입력
+		System.out.print("단어 : ");
+		String word = scan.next();
+		int count = 0;
+		//단어 리스트에 수정할 단어와 일치하는 단어들을 번호와 함께 출력
+		for(int i = 0; i < wordCount; i++) {
+			if(list[i].getWord().equals(word)) {
+				System.out.print(i+1+".");
+				list[i].print();// 여기서 list[i]의 정보를 출력해야함
+				//
+			}
+			if(count == 0) {
+				System.out.println("없는 단어입니다 .");
+				return;
+			}
+		}
+		
+	}
+		public static void deleteWord(Word[] list, int wordCount) {
+
+			//검색할 단어를 입력
+			System.out.print("단어 : ");
+			String word = scan.next();
+			
+		
+			int count = 0;
+			for(int i = 0; i < wordCount; i++) {
+				if(list[i].getWord().equals(word)) {
+					System.out.print(i+1+".");
+					list[i].print(); 
+					System.out.println(list[i]+"를 삭제하시겠습니까?  ");
+					System.out.println("1. 삭제");
+					System.out.print("2. 취소");
+					int yn = scan.nextInt();
+					if ( yn == 1) {
+						//삭제 
+						list[i] = null;
+						
+					}else if ( yn == 2) {
+						return;
+					}
+			}
+				else if(count == 0) {
+				System.out.println("삭제할 단어를 잘못 입력했습니다  .");
+				return;
+				
+			
+		}
+
+	}
+			public static int deleteWord(Word[]list, int wordCount, int index) {
+				
+			
+			
+			
+			}
+			
+}
 }
 
 
@@ -254,5 +344,5 @@ class Word{
 		this.wordClass = wordClass;
 	}
 	
-	
 }
+
