@@ -3,37 +3,31 @@ package day04;
 public class WhileEx07 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		/*
-		 * 4가 소수인지 아닌지 판별하는 코드를 작성 소수는 약수가 1과 자기자신인 수
-		 * 
-		 * 반복횟수 1~4까지 규칙성 입력받은 값 ( 4) 을 작은 수부터 나눠서 본인 값으로 나눴을때 참이 되는 if 문으로
-		 * 
-		 *
-		 * 와일에서 b가 a 까지 갔음 if 에서 소수면 소수라고 나오는데 아니였을 경우 와일문 빠져나와서 아닙니다 출력
-		 * 
-		 * 임의의 수 b 가 a가 될때까지 1식 늘어날때마다 b를 a 로 나누면 나머지가 2인경우 소수밖에 없음
-		 * 
-		 *
-		 *
-		 */ int b = 0;
-		int a = 4; // 스케너 넣으면 입력받은값
-		while (b < a) {
-			
-			b += 1;
-			if (a % b == 2) {
-
-				System.out.println(b + "  는 소수입니다 ");
+		/* 4가 소수인지 아닌지 판별하는 코드를 작성하세요.
+		 * 소수는 약수가 1과 자기자신인 수를 소수라고 함
+		 * 1 : 소수가 아님
+		 * 2 : 소수
+		 * 3 : 소수
+		 * 4 : 소수가 아님
+		 * 반복횟수 : i는 1부터 4까지 1씩 증가
+		 * 규칙성 : i가 4의 약수이면 약수의 개수(count)를 1증가
+		 * 반복문 종료 후 : 약수의 개수가 2개이면 소수, 아니면 소수가 아님이라고 출력
+		 * */
+		int num = 121;
+		int i = 1;
+		int count = 0;
+		while(i <= num) {
+			if(num % i == 0) {
+				count++;
 			}
-
-			/*
-			 * 강사님 코드 int num = 4; int i=1; int count = 0; while ( i <= num) { count ++; }
-			 * i++; } if (count ==2) { system.out.println(num+ "는 소수"
-			 * system.out.println(num+ "는 소수가 아님"
-			 */
-
+			i++;
 		}
-		System.out.println(b + "  는 소수가 아닙니다 ");
-
+		if(count == 2) {
+			System.out.println(num + "는 소수");
+		}
+		else {
+			System.out.println(num + "는 소수가 아님");
+		}
 	}
+
 }

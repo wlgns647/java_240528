@@ -3,18 +3,22 @@ package day04;
 public class WhileEx03 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-//		구구단 2단을 출력하는 코드작성
-//		2 x 1 = 2 ... 2 x 9 = 18
-		// 앞 뒤 자리 선언하고 뒤자리가 9가 될때까지 ++
-		int a = 2;
-		int b = 1;
-		while (b <= 9) {
-			System.out.println(a + " * " + b + " = " + a * b);
-			++b;
+		/* 구구단 2단을 출력하는 코드를 작성하세요.
+		 * 2 X 1 = 2
+		 * 2 X 2 = 4
+		 * ...
+		 * 2 X 9 = 18
+		 * 반복회수 : i는 1부터 9까지 1씩 증가
+		 * 규칙성 : 2 X i = (2*i)를 출력
+		 * 반복문 종료 후 : 없음
+		 * */
+		int i = 1;
+		int num = 3;
+		while(i <= 9) {
+			int res = num * i;
+			System.out.println(num + " X " + i + " = " + res);
+			i++;
 		}
-//      곱하고 출력문 가도 됨
-
 	}
 
 }
