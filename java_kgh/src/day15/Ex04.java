@@ -1,65 +1,76 @@
 package day15;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Random;
+import java.util.Scanner;
 
 public class Ex04 {
 
 	public static void main(String[] args) {
-//			1에서 10 사이의 랜덤한 수 6개를 중복되지 않게 생성해서
-//			저장하고 출력하는 코드를 작성 
-	
-		/*
-//		set을 사용해  랜덤 함수 안쓰고 ver.  리스트에 1부터 10 넣어놓고  
-//		 셔플로 섞어주기 위해 List 만들고 set 값을 List에 입력해줌
-//		 반복문으로 묶어서 중복체크하고 출력  6번 
-		HashSet<Integer> set = new HashSet<Integer>();
-		for(int i=0; i<10; i++) {
-			set.add(i);
-		}  // 1 부터 10까지의 수를 Set 에 저장함 
+		/* 1~45사이의 중복되지 않은 6개의 번호와 1개의 보너스 번호를 랜덤으로 생성하고,
+		 * 사용자가 번호를 6개 입력해서 몇등인지 맞추는 로또 예제 
+		 * 1등 : 번호 6개가 일치
+		 * 2등 : 번호 5개와 보너스 번호 일치
+		 * 3등 : 번호 5개가 일치
+		 * 4등 : 번호 4개가 일치
+		 * 5등 : 번호 3개가 일치
+		 * 나머진 꽝*/
+
+		//로또 번호와 보너스 번호를 생성
+		HashSet<Integer> lotto = new HashSet<Integer>();
+		int min = 1, max = 45;
 		
-		ArrayList<Integer> list = new ArrayList<Integer>();
-		list.addAll(set);
-//		System.out.println(list);  //확인용  
-		
-		for(int i=0; i<6; i++) {
-			if ( ){
-				System.out.println(1);
-			}else System.out.println(2);
+		while(lotto.size() < 6) {
+			int r = (int)(Math.random()*(max - min + 1) + min);
+			lotto.add(r);
 		}
-		*/
+		//보너스 번호 생성 코드
+		int bonus;
+		do {
+			bonus = (int)(Math.random()*(max - min + 1) + min);
+		}while(lotto.contains(bonus));
 		
-		// list 를 이용하는 경우
-		ArrayList<Integer> list = new ArrayList<Integer>();
-		int min = 1, max = 10;
-//		랜덤값 6개를 일단 뽑고 
-//		 중복체크하고  저장
-//		출력 
-		for(int i=0; i<6; i++ ) {
-			int random = (int) (Math.random() * (max - min + 1)) + min;
-			
-			if (list.contains(random)) {
-				i--;
-				continue; 
-			}else list.add(random);
-			
+		System.out.println(lotto + " : " + bonus);
+				
+		//사용자가 6개의 번호를 입력
+		Scanner scan = new Scanner(System.in);
+		HashSet<Integer> user = new HashSet<Integer>();
+		
+		System.out.print("번호 입력(1~45사이의 중복되지 않은 수 6개) : ");
+		while(user.size() < 6) {
+			user.add(scan.nextInt());
+		}
+		
+		//입력한 번호를 이용하여 당첨 등수를 출력
+		//당첨 개수를 셈
+		int count = 0;
+		for(Integer num : user) {
+			if(lotto.contains(num)) {
+				count++;
+			}
+		}
+		
+		switch(count) {
+		case 6:
+			System.out.println("1등!");
+			break;
+		case 5:
+			if(user.contains(bonus)) {
+				System.out.println("2등!");
+			}
+			else {
+				System.out.println("3등!");
+			}
+			break;
+		case 4:
+			System.out.println("4등!");
+			break;
+		case 3:
+			System.out.println("5등!");
+			break;
+		default:
+			System.out.println("꽝!");
+		}
+		
 	}
-		System.out.println(list);
-		
-		//set을 이용하는 경우 
-		HashSet<Integer> set = new HashSet<Integer>();
-//		int min =1,max=10; 다른방법 시도하면서 선언했음 
-		
-		while(set.size()<6) {
-			int r =(int)(Math.random()*(max-min+1)+min);
-//		혹은 Random random = new Random();
-//			int r = random.nextInt(min,max+1);
-			
-			set.add(r);
-		}
-}
-	
-	
-	
+
 }
