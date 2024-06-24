@@ -75,6 +75,11 @@ public class Post {
 	public boolean checkWriter(String id, String pw) {
 		return this.id.equals(id) && this.pw.equals(pw);
 	}
+
+	public String getNum() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
 

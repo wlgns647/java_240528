@@ -1,7 +1,6 @@
 package day15;
 
 import java.util.HashSet;
-import java.util.Random;
 
 public class Ex03 {
 
