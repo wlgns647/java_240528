@@ -18,6 +18,11 @@ public class StudentManager implements Program {
 	
 	@Override
 	public void printMenu() {
+		System.out.println("메뉴");
+		System.out.println("1. 성적관리");
+		System.out.println("2. 메뉴관리");
+		System.out.println("3. 종료");
+		System.out.print("메뉴 선택: ");
 		
 	}
 
