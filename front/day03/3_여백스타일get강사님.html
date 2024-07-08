@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여백 스타일</title>
+    <style>
+        /* 공통 스타일 */
+        .box {
+            border: 1px solid black;
+            box-sizing: border-box;
+            padding: 30px;
+            margin-bottom: 20px;
+						width: 240px; height: 240;
+						padding: 30px;
+        }
+        
+        /* 박스1 */
+        .box1 {
+            width: 240px; height: 240;
+        }
+
+        /* 박스2 */
+        .box2 {
+            width: 200px;
+            height: 100px;
+        }
+
+        /* 겉박스(Outer Box)와 속박스(Inner Box) */
+        .outer-box {
+            width: 300px;
+            height: 300px;
+            border: 3px solid black;
+            box-sizing: border-box; /* 패딩과 보더를 포함하여 크기를 계산합니다 */
+            position: relative; /* 절대 위치를 설정할 때 기준이 됩니다 */
+            margin: 10px auto; /* 가운데 정렬을 위한 마진 */
+        }
+
+        .inner-box {
+            width: calc(100% - 60px); /* 양쪽 30px의 여백을 뺀 너비 */
+            height: calc(100% - 60px); /* 위아래 30px의 여백을 뺀 높이 */
+            border: 3px solid black;
+            box-sizing: border-box; /* 패딩과 보더를 포함하여 크기를 계산합니다 */
+            position: absolute; /* 부모 요소를 기준으로 절대 위치를 설정합니다 */
+            top: 30px; /* 위쪽 여백 */
+            left: 30px; /* 왼쪽 여백 */
+        }
+    </style>
+</head>
+<body>
+    <div class="box box1">박스입니다</div>
+    <div class="box box2">박스입니다</div>
+    <div class="outer-box">
+        <div class="inner-box">박스입니다</div>
+    </div>
+    <div class="box1"></div>
+    <div class="box-up">
+        <border-box></border-box>
+            
+    </div>
+</body>
+</html>
+
+<!-- 
+
+
+-->

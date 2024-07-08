@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		/* 업버튼 스타일 */
+		.scroll-to-top {
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+			background-color: #007bff;
+			color: white;
+			border: none;
+			padding: 10px 20px;
+			cursor: pointer;
+			display: none; /* 초기에는 숨김 */
+		}
+	</style>
+</head>
+<body>
+	<!-- 
+	브라우저 우측 하단에 업버튼을 추가하고 업버튼을 클릭하면 제일상단으로 가는 코드를 작성하세요
+	-->
+<!-- 업버튼 -->
+<button class="scroll-to-top" onclick="scrollToTop()">위로</button>
+
+<!-- 페이지 콘텐츠 -->
+<div style="height: 2000px;">
+  <!-- 여기에 페이지 콘텐츠를 추가하세요 -->
+</div>
+
+<script>
+// 업버튼 클릭 시 맨 위로 스크롤 이동
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' // 부드러운 스크롤 적용
+  });
+}
+
+// 스크롤 이벤트를 감지하여 업버튼 숨김/표시 제어
+window.addEventListener('scroll', function() {
+  var scrollButton = document.querySelector('.scroll-to-top');
+  if (window.scrollY > 200) { // 스크롤이 200px 이상 되면 업버튼 표시
+    scrollButton.style.display = 'block';
+  } else { // 그 외에는 숨김
+    scrollButton.style.display = 'none';
+  }
+});
+</script>
+</body>
+</html>
