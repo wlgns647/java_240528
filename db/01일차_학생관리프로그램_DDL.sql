@@ -6,7 +6,6 @@ drop database if exists student;
 
 # 데이터베이스 생성
 # if not exists를 추가하는 이유? 
-
 # => 생성하려는 DB가 이미 있는 경우 건너뛰기 위해서 
 # => if not exists가 없는 경우 생성하려는 DB가 있으면 에러가 발생해서 이후 SQL문이 실행되지 않음 
 # MySQL에서는 스키마와 DB를 같은 것으로 봄 
@@ -77,28 +76,28 @@ create table if not exists student.score(
 );
 
 # 테이블 삭제
-# drap table if exists 테이블명; 
+# drop table if exists 테이블명; 
 drop table if exists score2;
+
 # 테이블 수정 - 컬럼 추가
-# alter table 테이블명 add 컬럼명 타입 [zerofill] [unique] [not null | null] [default 기본값] ...
+# alter table 테이블명 add 컬럼명 타입 [zerofill] [unique] ... ; 
 alter table student.score add test int not null;
+
 # 테이블 수정 - 컬럼 수정
-# alter table 테이블명 change 기존 컬럼명 새컬럼명 타입 [zerofill] [unique] [not null | null] [default 기본값] ...
+# alter table 테이블명 change 기존컬럼명 새컬럼명 타입 [zerofill] [unique] ... ;
 alter table student.score change test totalScore int not null default 0;
 
-#테이블 수정- 컬럼 삭제 
-# alter table 테이블명 drop 컬럼명
+# 테이블 수정 - 컬럼 삭제
+# alter table 테이블명 drop 컬럼명 
 alter table student.score drop totalScore;
 
 # 테이블 수정 - 제약조건 추가
-# alter tavle 테이블명 add constraint 제약조건명 제약조건;
-alter table student.score add constraint check(midTerm >= 0 and midTerm <= 0);
+# alter table 테이블명 add constraint 제약조건명 제약조건;
+alter table student.score add constraint aa check(midTerm >= 0 and midTerm <= 100);
 
 # 테이블 수정 - 제약조건 삭제
-# alter table 테이블명 drop 제약조건명;
+# alter table 테이블명 drop constraint 제약조건명;
 alter table student.score drop constraint aa;
-
-
 
 
 
