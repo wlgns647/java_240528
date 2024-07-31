@@ -6,10 +6,9 @@ import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-
 @Data
 @AllArgsConstructor
-public class Contact implements Serializable{
+public class Contact implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -25,15 +24,16 @@ public class Contact implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Contact other = (Contact) obj;
-		return Objects.equals(name, other.name);
+		return Objects.equals(num, other.num);
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(name);
+		return Objects.hash(num);
 	}
+	
 	@Override
 	public String toString() {
-		return "["+ name +" : " +  num+"]";
+		return "[" + name + " : " + num + "]";
 	}
 	public void update(Contact newContact) {
 		this.name = newContact.name;

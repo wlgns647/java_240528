@@ -101,7 +101,7 @@ public class Main {
 	 * 1번 게시글이 삭제되었습니다.
 	 * ---------------------
 	 * */
-	public static void main(String[] args) { //인스턴스
+	public static void main(String[] args) {
 		
 		PostManager pm = new PostManager();
 		pm.run();

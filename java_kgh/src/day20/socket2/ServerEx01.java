@@ -27,9 +27,7 @@ public class ServerEx01 {
 			
 			//3.대기
 			//4. 요청 수락 후 소켓 객체를 생성
-			while(true) {
 			Socket socket = serverSocket.accept();
-			}
 			System.out.println("[연결 성공].....");
 			//클라이언트에서 보낸 문자열들을 읽어 옴
 			InputStream is = socket.getInputStream();

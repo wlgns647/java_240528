@@ -7,9 +7,9 @@ import lombok.Data;
 
 @Data
 public class Post implements Serializable {
-	
-	private static final long serialVersionUID = 12345L;
 
+	private static final long serialVersionUID = 12345L;
+	
 	//제목, 내용, 작성자, 비번, 조회수
 	private String title;
 	private String contents;
@@ -22,9 +22,14 @@ public class Post implements Serializable {
 	
 	//게시글 번호를 생성할 때 활용
 	private static int count = 0;
-
-	public static
 	
+	public static int getCount() {
+		return count;
+	}
+	public static void setCount(int count1) {
+		count = count1;
+	}
+
 	//이 생성자를 이용할 때만 게시글 번호를 1 증가하도록 함
 	public Post(String title, String contents, String id, String pw) {
 		this.title = title;
@@ -79,11 +84,6 @@ public class Post implements Serializable {
 	//아이디, 비번이 주어지면 게시글의 아이디 비번과 같은지 확인하는 메소드
 	public boolean checkWriter(String id, String pw) {
 		return this.id.equals(id) && this.pw.equals(pw);
-	}
-
-	public String getNum() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 }

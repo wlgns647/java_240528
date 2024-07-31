@@ -14,7 +14,7 @@ public class ClientEx03 {
 	public static void main(String[] args) {
 		
 		int port = 5001;
-		String ip = "192.168.30.14";
+		String ip = "192.168.30.199";
 		
 		try {
 			Socket socket = new Socket(ip, port);

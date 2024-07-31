@@ -7,8 +7,9 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
-import day18.homework.v3.Schedule;
+import day18.homework.v1.Schedule;
 import program.Program;
 
 public class PostManager implements Program {
@@ -61,39 +62,44 @@ public class PostManager implements Program {
 	
 	@Override
 	public void save(String fileName) {
-	
-			try(FileOutputStream fos = new FileOutputStream(fileName);
-				ObjectOutputStream oos = new ObjectOutputStream(fos)){
-				oos.writeObject(list);
-			} catch (Exception e) {
-				System.out.println("저장에 실패했습니다.");
-			}
+		try(FileOutputStream fos = new FileOutputStream(fileName);
+			ObjectOutputStream oos = new ObjectOutputStream(fos)){
+			oos.write(Post.getCount());
+			oos.writeObject(list);
+		} catch (Exception e) {
+			System.out.println("저장에 실패했습니다.");
+		}
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public void load(String fileName) {
-		
-			try(FileInputStream fis = new FileInputStream(fileName);
-				ObjectInputStream ois = new ObjectInputStream(fis)){
-				list = (List<Schedule>)ois.readObject();
-			} catch (Exception e) {
-				System.out.println("불러오기에 실패했습니다.");
-			} 
-		}
-	
+		try(FileInputStream fis = new FileInputStream(fileName);
+			ObjectInputStream ois = new ObjectInputStream(fis)){
+			int count = ois.read();
+			Post.setCount(count);
+			list = (List<Post>)ois.readObject();
+		} catch (Exception e) {
+			System.out.println("불러오기에 실패했습니다.");
+		} 
+	}
 	
 	@Override
 	public void runMenu(int menu) throws Exception {
 		switch(menu) {
-		case INSERT: insert();
-			System.out.println(list);
+		case INSERT:
+			insert();
 			break;
-		case UPDATE: update();
+		case UPDATE:
+			update();
 			break;
-		case DELETE: delete();
+		case DELETE:
+			delete();
 			break;
-		case SEARCH: search();
+		case SEARCH:
+			search();
 			break;
-		case EXIT: exit();
+		case EXIT:
+			exit();
 			break;
 		default:
 		}
@@ -101,102 +107,117 @@ public class PostManager implements Program {
 
 	private void exit() {
 		printBar();
-		System.out.println("프로그렘을 종료합니다");
+		System.out.println("프로그램을 종료합니다.");
 		printBar();
-		
 	}
 
 	private void search() {
-		// 검색어 입력
-		System.out.println("검색어(전체는 엔터): ");
-		scan.next();
+		//검색어 입력
+		System.out.print("검색어(전체는 엔터) : ");
+		scan.nextLine();//공백처리
 		String search = scan.nextLine();
+		
 		printBar();
-		// 게시글에서 검색어가 제목 또는 내용에 들어간 게시글 리스트를 가져옴
+		//게시글에서 검색어가 제목 또는 내용에 들어간 게시글리스트를 가져옴
 		List<Post> searchList = getSearchList(search);
-		//게시글 리스트가 비어있으면 안내문구 출력 후 종료 
-		if(searchList.size()==0) {
-			printBar();
+		
+		//게시글 리스트가 비어 있으면 안내문구 출력 후 종료
+		printBar();
+
+		if(searchList.size() == 0) {
 			System.out.println("검색어와 일치하는 게시글이 없습니다.");
 		}
-		// 가져온 게시글 리스트를 출력 
+		//가져온 게시글 리스트를 출력
 		printList(searchList);
-		printBar();
-		// 게시글을 확인할건지 선택
-		System.out.println("게시글 확인하시겠습니까?(y/n)");
-		char ok = scan.next().charAt(0);
-		// 확인하지 않겠다고 하면 종료
-		if(ok!='y') {
-			return;
-		}
-		// 확인하면 게시글 번호를 입력
-		printBar();
-		System.out.println("검색 결과중 확인할 게시글 번호: ");
-		int num=scan.nextInt();
-		// 입력받은 게시글 번호로 객체를 생성하고 
-		Post post = new Post(num);
-		// 검색 리스트에서 생성된 객체와 일치하는 번지를 확인해서 
-		int index = searchList.indexOf(post);
-		// 번지가 유효하지 않으면 안내문구 출력후 종료
-		if(index<0) {
-			System.out.println("검색결과에는 없는 게시글입니다");
-			return;
-		}
-		// 번지가 유효하면 번지에 있는 게시글을 가져오고
-		post = searchList.get(index);
-		// 가져온 게시글을 출력
-		post.print();
-		// 메뉴로 돌아가려먼... 문구 출력
-		printBar();
-		System.out.println("메뉴로 돌아가려면 엔터를 입력하세요");
-		// 엔터를 입력받도록 처리 
-		scan.nextLine();// 게시글 번호입럭할 떼 남은 공벡처리
-		scan.nextLine();// 입력한 엔터처리 
 		
+		printBar();
+		//게시글을 확인할건지 선택
+		System.out.print("게시글 확안하겠습니까?(y/n) ");
+		char ok = scan.next().charAt(0);
+		
+		//확인하지 않겠다고 하면 종료
+		if(ok != 'y') {
+			return;
+		}
+		//확인하면 게시글 번호를 입력
+		printBar();
+		System.out.print("검색 결과 중 확인할 게시글 번호 : ");
+		int num = scan.nextInt();
+		//입력받은 게시글 번호로 객체를 생성
+		Post post = new Post(num);
+		
+		//검색 리스트에서 생성된 객체와 일치하는 번지를 확인
+		int index = searchList.indexOf(post);
+		
+		//번지가 유효하지 않으면 안내문구 출력후 종료
+		printBar();
+		if(index < 0) {
+			System.out.println("검색 결과에는 없는 게시글입니다.");
+			return;
+		}
+			
+		//번지에 있는 게시글을 가져옴
+		post = searchList.get(index);
+		//가져온 게시글을 출력
+		post.print();
+		//메뉴로 돌아가려면... 문구 출력 
+		printBar();
+		System.out.print("메뉴로 돌아가려면 엔터를 치세요.");
+		//엔터를 입력받도록 처리
+		scan.nextLine();//게시글 번호 입력할 때 남은 공백처리
+		scan.nextLine();//입력한 엔터 처리
 	}
-	
 
 	private void printList(List<Post> searchList) {
-		for(Post Post : searchList) {
-			System.out.println(Post);
+		for(Post post : searchList) {
+			System.out.println(post);
 		}
 	}
 
 	private List<Post> getSearchList(String search) {
-
-			for(Post post : list) {
-				String title = post.getTitle();
-				String cintents = post.getContents();
-				if(post.getTitle().contains(search)||
-				   post.getContents().contains(search)) {
-					searchList(search).add(post);
-				}
+		
+		List<Post> searchList = new ArrayList<Post>();
+		//전체 게시글에서 하나씩 꺼내서 전체 탐색
+		for(Post post : list) {
+			//게시글의 제목 또는 내용에 검색어가 포함되어 있으면 검색 리스트에 추가
+			String title = post.getTitle();
+			String contents = post.getContents();
+			if( title.contains(search) || contents.contains(search)) {
+				searchList.add(post);
 			}
+		}
+		return  searchList;
+		//스트림을 이용하여 검색어와 일치하는 게시글 리스트를 가져옴
+		/*
+		return list.stream()
+				.filter(p->p.getTitle().contains(search)
+						|| p.getContents().contains(search))
+				.collect(Collectors.toList());
+		*/
 	}
-	return searchList;
-					
-	
-	
 
 	private void delete() {
 		//삭제할 게시글 번호를 입력
-		System.out.print("삭제할 게시글 번호: ");
+		System.out.print("삭제할 게시글 번호 : ");
 		int num = scan.nextInt();
+		
 		printBar();
-		// 게시글 번호에 맞는 게시글을 가져옴
+		
+		//게시글 번호에 맞는 게시글을 가져옴
 		Post post = selectPost(num);
-		// 게시글이 없으면 종료
-//		if(post == null) {
-//			return;
-//		}
-		//리스트에서 게시글을 삭제 
-//		list.remove(post);
-//		printBar();
-//		System.out.println(post.getNum()+ "번 게시글이 삭제되었습니다");
-		// 게시글을 리스트에서 삭제하는데 성공하면 안내문구 출력
+		//게시글이 없으면 종료
+		/*if(post == null) {
+			return;
+		}
+		//리스트에서 게시글을 삭제
+		list.remove(post);
+		printBar();
+		System.out.println(post.getNum()+"번 게시글이 삭제되었습니다.");
+		*/
+		//게시글을 리스트에서 삭제하는데 성공하면 안내 문구 출력
 		if(list.remove(post)) {
 			printBar();
-			System.out.println(post.getNum()+ "번 게시글이 삭제되었습니다");
+			System.out.println(post.getNum()+"번 게시글이 삭제되었습니다.");
 		}
 	}
 
@@ -206,12 +227,12 @@ public class PostManager implements Program {
 		System.out.print("수정할 게시글 번호");
 		int num = scan.nextInt();
 		printBar();
-		
+		//게시글 번호에 맞는 게시글을 가져옴
 		Post post = selectPost(num);
+		//게시글이 없으면 종료
 		if(post == null) {
 			return;
 		}
-		
 		
 		printBar();
 		//같으면 새 제목과 내용을 입력
@@ -255,7 +276,6 @@ public class PostManager implements Program {
 	public void printBar() {
 		System.out.println("---------------------");
 	}
-	
 	//게시글 번호가 주어지면 게시글을 가져오는 메소드(아이디, 비번 확인 해서)
 	public Post selectPost(int num) {
 		//입력한 게시글 번호를 이용하여 게시글 객체를 생성
@@ -286,10 +306,7 @@ public class PostManager implements Program {
 		}
 		return post;
 	}
-
-	
-	}
-
+}
 
 
 
