@@ -146,6 +146,31 @@ CREATE TABLE `price` (
 	`pr_price`	int	NOT NULL
 );
 
+<<<<<<< HEAD
+=======
+DROP TABLE IF EXISTS `ticketing_list`;
+
+CREATE TABLE `ticketing_list` (
+	`tl_num`	int primary key auto_increment	NOT NULL,
+	`tl_ti_num`	int	NOT NULL,
+	`tl_se_num`	int	NOT NULL
+);
+
+ALTER TABLE `ticketing_list` ADD CONSTRAINT `FK_ticketing_TO_ticketing_list_1` FOREIGN KEY (
+	`tl_ti_num`
+)
+REFERENCES `ticketing` (
+	`ti_num`
+);
+
+ALTER TABLE `ticketing_list` ADD CONSTRAINT `FK_seat_TO_ticketing_list_1` FOREIGN KEY (
+	`tl_se_num`
+)
+REFERENCES `seat` (
+	`se_num`
+);
+
+>>>>>>> 5633032913603d2367e35af8e1ee3cb07a06c8ef
 ALTER TABLE `character` ADD CONSTRAINT `FK_person_TO_character_1` FOREIGN KEY (
 	`ch_ps_num`
 )
@@ -244,3 +269,8 @@ REFERENCES `schedule` (
 	`sd_num`
 );
 
+<<<<<<< HEAD
+=======
+ALTER TABLE `cgv`.`schedule` 
+ADD COLUMN `sd_possible` INT NOT NULL AFTER `sd_sc_num`;
+>>>>>>> 5633032913603d2367e35af8e1ee3cb07a06c8ef
