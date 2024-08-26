@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
 
 import kr.kh.spring.model.dto.PersonDTO;
 import kr.kh.spring.service.MemberService;
