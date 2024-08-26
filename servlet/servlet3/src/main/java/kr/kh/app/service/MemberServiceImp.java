@@ -8,9 +8,12 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import kr.kh.app.dao.MemberDAO;
+import kr.kh.app.model.vo.MemberVO;
 
 public class MemberServiceImp implements MemberService  {
 
+	private MemberDAO memberDao;
+	
 	public MemberServiceImp() {
 		String resource = "kr/kh/app/config/mybatis-config.xml";
 		InputStream inputStream;
@@ -23,6 +26,22 @@ public class MemberServiceImp implements MemberService  {
 			memberDao = session.getMapper(MemberDAO.class);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public boolean signup(MemberVO member) {
+		//member null 체크
+		
+		//아이디 유효성 검사
+		
+		//비번 유효성 검사
+		
+		try {
+			return memberDao.insertMember(member);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
 		}
 	}
 }
