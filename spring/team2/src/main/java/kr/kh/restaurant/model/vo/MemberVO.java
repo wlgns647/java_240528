@@ -1,6 +1,6 @@
 package kr.kh.restaurant.model.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,5 +17,5 @@ public class MemberVO {
 	Date me_limit; 
 	int me_report; 
 	String me_ms_name; 
-	Date me_stop; 
+	Date me_stop;
 }

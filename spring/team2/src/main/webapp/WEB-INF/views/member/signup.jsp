@@ -15,8 +15,8 @@
 </head>
 <body>
 	
-	<h1 class="mt-3">회원가입</h1>
-	<form action="<c:url value="/signup"/>" method="post" class="mt-3">
+	<h1>회원가입</h1>
+	<form action="<c:url value="/signup"/>" method="post" id="form">
 		<div class="form-group">
 			<label for="id">아이디:</label>
 			<input type="text" class="form-control" id="id" name="me_id">
@@ -36,8 +36,8 @@
 		<button type="submit" class="btn btn-outline-success col-12">회원가입</button>
 	</form>
 	<script type="text/javascript">
-	// var flag = false;
-	// 유효성검사 
+	var flag = false;
+	
 	$('#form').validate({
 		rules : {
 			me_id : {

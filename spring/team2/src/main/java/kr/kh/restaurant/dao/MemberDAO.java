@@ -10,7 +10,8 @@ public interface MemberDAO {
 
 	boolean insertMember(@Param("m")MemberVO member);
 
-	MemberVO selectMember(String me_id);
+	MemberVO selectMember(@Param("me_id")String me_id);
+
 
 
 }
