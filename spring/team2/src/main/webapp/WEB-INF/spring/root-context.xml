@@ -23,6 +23,6 @@
 	    <property name="dataSource" ref="dataSource" />
 	    <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
 	</bean>
-	<mybatis-spring:scan base-package="kr.kh..restaurant.dao"/>
+	<mybatis-spring:scan base-package="kr.kh.restaurant.dao" />
 
 </beans>
