@@ -1,4 +1,4 @@
-package kr.kh.restaurant.model.vo;
+package kr.kh.spring.model.vo;
 
 import java.util.Date;
 

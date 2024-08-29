@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="kr.kh.restaurant">
+	<logger name="kr.kh.spring2">
 		<level value="info" />
 	</logger>
 	

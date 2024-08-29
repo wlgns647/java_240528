@@ -1,11 +1,11 @@
-package kr.kh.restaurant.service;
+package kr.kh.spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import kr.kh.restaurant.dao.MemberDAO;
-import kr.kh.restaurant.model.vo.MemberVO;
+import kr.kh.spring.dao.MemberDAO;
+import kr.kh.spring.model.vo.MemberVO;
 
 @Service
 public class MemberServiceImp implements MemberService {
@@ -48,6 +48,11 @@ public class MemberServiceImp implements MemberService {
 			return user;
 		}
 		return null;
+	}
+
+	@Override
+	public boolean checkId(String id) {
+		return memberDao.selectMember(id) == null;
 	}
 
 

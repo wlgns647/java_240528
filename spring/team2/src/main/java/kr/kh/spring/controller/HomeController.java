@@ -1,21 +1,24 @@
-package kr.kh.restaurant.controller;
+package kr.kh.spring.controller;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.kh.restaurant.model.dto.PersonDTO;
-import kr.kh.restaurant.model.vo.MemberVO;
-import kr.kh.restaurant.service.MemberService;
+import kr.kh.spring.model.dto.PersonDTO;
+import kr.kh.spring.model.vo.MemberVO;
+import kr.kh.spring.service.MemberService;
 
 @Controller
 public class HomeController {
 	
-	
+	//private MemberService memberService = new MemberServiceImp();
 	
 	@Autowired
 	private MemberService memberService;
@@ -67,5 +70,22 @@ public class HomeController {
 		}
 		session.setAttribute("user", user);
 		return "/main/message";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(Model model, HttpSession session) {
+		//세션에 있는 user를 제거
+		session.removeAttribute("user");
+		model.addAttribute("msg", "로그아웃 했습니다.");
+		model.addAttribute("url", "/");
+		return "/main/message";
+	}
+	
+	//@CrossOrigin(origins = "*")//모든 사이트들이 해당 URL에 데이터를 요청하도록 허용
+	@ResponseBody
+	@GetMapping("/check/id")
+	public boolean checkId(@RequestParam("id")String id) {
+		boolean res = memberService.checkId(id);
+		return res;
 	}
 }

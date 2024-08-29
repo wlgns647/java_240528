@@ -1,4 +1,4 @@
-package kr.kh.restaurant.model.dto;
+package kr.kh.spring.model.dto;
 
 import lombok.Data;
 

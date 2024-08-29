@@ -1,10 +1,8 @@
-package kr.kh.restaurant.dao;
+package kr.kh.spring.dao;
 
 import org.apache.ibatis.annotations.Param;
 
-import kr.kh.restaurant.model.vo.MemberVO;
-
-
+import kr.kh.spring.model.vo.MemberVO;
 
 public interface MemberDAO {
 
