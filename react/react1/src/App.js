@@ -14,7 +14,12 @@ function App() {
   console.log('-------------------');
   //arr3을 복사해서 arr4를 만들고 싶어서 전개 연산자를 사용했더니 원하는 결과가 나옴 
   var arr3 = [1,2,3];
-  var arr3 = [...arr3]; // 전개연산자: 배열이나 객체를 복사할때 사용
+  console.log(arr3);
+  var arr4 = [...arr3]; // 전개연산자: 배열이나 객체를 복사할때 사용
+  console.log(arr4);
+  arr4.push(4);
+  console.log(arr3);
+ 
   return (
     <div>
    <button>눌러주세요</button>
