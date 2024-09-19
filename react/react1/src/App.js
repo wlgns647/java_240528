@@ -20,6 +20,16 @@ function App() {
   arr4.push(4);
   console.log(arr3);
  
+//appleCount 변수에 arr5에 있는 1이 저장되고 
+//bananaCount 변수에 arr5에 있는 2가 저장되고
+//orangeCount 변수에 arr5에 있는 3이 저장되도록 작성
+// 번지를 이용해서 해도 되지만 변수 선언시 []안에 각 변수명을 써주면 
+// 해당 번지에 맞는 값들이 변수에 맵핑이 됨 
+var arr5 = [1,2,3];
+var [appleCount, bananaCount, orangeCount] = arr5;
+console.log(appleCount);
+console.log(bananaCount);
+console.log(orangeCount);
   return (
     <div>
    <button>눌러주세요</button>
